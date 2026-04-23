@@ -1,0 +1,251 @@
+/* --- Header --- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  z-index: 100;
+  background-color: transparent;
+  color: var(--color-cream);
+  transition: var(--transition-smooth);
+}
+
+.header.scrolled {
+  background-color: var(--color-cream);
+  color: var(--color-dark);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 1rem 3rem;
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.nav-links a:hover {
+  color: var(--color-accent);
+}
+
+.order-btn {
+  border: 1px solid currentColor;
+  padding: 0.5rem 1.5rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.order-btn:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-dark);
+}
+
+/* --- Hero --- */
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=1920');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 26, 26, 0.6);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: var(--color-cream);
+}
+
+.main-title {
+  font-size: 6vw;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.side-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+}
+
+.side-text.left {
+  left: 2rem;
+}
+
+.side-text.right {
+  right: 2rem;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* --- Split Section --- */
+.split-section {
+  display: flex;
+  height: 70vh;
+}
+
+.split-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 10%;
+}
+
+.split-text h2 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  color: var(--color-accent);
+}
+
+.split-text p {
+  font-size: 1.1rem;
+  max-width: 500px;
+}
+
+.bg-dark { background-color: var(--color-dark); }
+.text-cream { color: var(--color-cream); }
+.bg-cream { background-color: var(--color-cream); }
+.bg-accent { background-color: var(--color-accent); }
+.text-dark { color: var(--color-dark); }
+
+.split-image {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+}
+
+/* --- Staggered Sections --- */
+.staggered-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.stagger-row {
+  display: flex;
+  height: 60vh;
+}
+
+.stagger-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.stagger-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  text-align: center;
+}
+
+.stagger-box h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.stagger-box p {
+  max-width: 400px;
+}
+
+.stagger-box.image-box {
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+}
+
+/* --- Footer --- */
+.footer {
+  background-color: var(--color-dark);
+  color: var(--color-cream);
+  padding: 6rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-col h4 {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-accent);
+}
+
+.footer-col p {
+  opacity: 0.8;
+}
+
+.center-logo h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.subscribe {
+  display: flex;
+  border-bottom: 1px solid var(--color-cream);
+  padding-bottom: 0.5rem;
+}
+
+.subscribe input {
+  background: transparent;
+  border: none;
+  color: var(--color-cream);
+  outline: none;
+}
+
+.subscribe input::placeholder {
+  color: rgba(236, 229, 213, 0.5);
+}
+
+.subscribe button {
+  background: transparent;
+  border: none;
+  color: var(--color-cream);
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .split-section, .stagger-row { flex-direction: column; height: auto; }
+  .split-image, .stagger-box.image-box { height: 400px; width: 100%; }
+  .side-text { display: none; }
+  .main-title { font-size: 10vw; }
+}
