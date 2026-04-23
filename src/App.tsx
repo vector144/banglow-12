@@ -195,7 +195,14 @@ function App() {
           </div>
 
           <div className="drinks-images reveal-stagger">
-            <img className="drink-img-1 zoom-wrap" src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=600" alt="Cocktail pouring" />
+            <video
+              className="drink-img-1 zoom-wrap"
+              src="/gallery/video-drinks-1.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
             <img className="drink-img-2 zoom-wrap" src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&q=80&w=600" alt="Cocktail smoke" />
           </div>
         </div>
