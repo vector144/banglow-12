@@ -77,7 +77,7 @@ const GALLERY_ITEMS = [
     type: 'image' as const,
     src: '/gallery/breakfast-sandwich-1.jpg',
     caption: 'Breakfast Sandwiches',
-    span: 'wide',
+    span: 'normal',
   },
   {
     id: 11,
