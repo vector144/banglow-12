@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import logoImg from './assets/logo.jpg';
+import Gallery from './Gallery';
 import './App.css';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 import { useScrollAnimations } from './hooks/useScrollAnimations';
@@ -23,12 +25,13 @@ function App() {
       {/* ── Header ── */}
       <header className={`header ${scrolled ? 'scrolled' : ''}`}>
         <div className="logo">
-          <img src="/logo.jpg" alt="Bungalow Twelve" className="logo-img" />
+          <img src={logoImg} alt="Bungalow Twelve" className="logo-img" />
         </div>
         <nav className="nav-links">
           <a href="#home">Home</a>
           <a href="#menu">Menu</a>
           <a href="#catering">Catering</a>
+          <a href="#gallery">Gallery</a>
         </nav>
         <div className="order-btn">
           <span>Order Now</span>
@@ -197,6 +200,9 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* ── Gallery ── */}
+      <Gallery />
 
       {/* ── Interior Banner ── */}
       <section className="interior-banner">
