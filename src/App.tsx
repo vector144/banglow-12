@@ -1,15 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import logoImg from './assets/logo.jpg';
-import Gallery from './Gallery';
 import './App.css';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 import { useScrollAnimations } from './hooks/useScrollAnimations';
 
-function App() {
+// Components & Pages
+import HomePage from './pages/HomePage';
+import MenuPage from './pages/MenuPage';
+import Preloader from './components/Preloader';
+import PageTransition from './components/PageTransition';
+
+function AppContent() {
+  const [loading, setLoading] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const heroRef = useRef<HTMLElement>(null);
+  const location = useLocation();
 
   useSmoothScroll();
   useScrollAnimations();
@@ -22,18 +29,26 @@ function App() {
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <div className="App">
+      <AnimatePresence mode="wait">
+        {loading && <Preloader onComplete={() => setLoading(false)} />}
+      </AnimatePresence>
 
       {/* ── Header ── */}
       <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-        <div className="logo">
+        <Link to="/" className="logo">
           <img src={logoImg} alt="Bungalow Twelve" className="logo-img" />
-        </div>
+        </Link>
         <nav className="nav-links desktop-only">
-          <a href="#home">Home</a>
-          <a href="#menu">Menu</a>
-          <a href="#gallery">Gallery</a>
+          <Link to="/">Home</Link>
+          <Link to="/menu">Menu</Link>
+          <a href="/#gallery">Gallery</a>
         </nav>
 
         {/* Mobile Toggle */}
@@ -46,193 +61,31 @@ function App() {
         {/* Mobile Nav Overlay */}
         <div className={`mobile-nav ${mobileMenuOpen ? 'active' : ''}`}>
           <nav className="mobile-nav-links">
-            <a href="#home" onClick={toggleMobileMenu}>Home</a>
-            <a href="#menu" onClick={toggleMobileMenu}>Menu</a>
-            <a href="#gallery" onClick={toggleMobileMenu}>Gallery</a>
+            <Link to="/" onClick={toggleMobileMenu}>Home</Link>
+            <Link to="/menu" onClick={toggleMobileMenu}>Menu</Link>
+            <a href="/#gallery" onClick={toggleMobileMenu}>Gallery</a>
           </nav>
         </div>
       </header>
 
-      {/* ── Hero ── */}
-      <section className="hero" id="home" ref={heroRef}>
-        <div
-          className="hero-img"
-          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=1920)' }}
-        />
-        <div className="hero-overlay" />
-
-        {/* Cinematic hero entrance — Framer Motion */}
-        <div className="hero-content">
-          <motion.p
-            className="hero-eyebrow"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            SERVING CENTRAL FLORIDA SINCE 1996 · BUNGALOW TWELVE
-          </motion.p>
-
-          <motion.h1
-            className="hero-headline"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            FLAVORS<br />THAT STAY
-          </motion.h1>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1 }}
-          >
-            <a href="#menu" className="hero-cta">Explore Our Menu</a>
-          </motion.div>
-        </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className="scroll-indicator"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.8, duration: 1 }}
-        >
-          <span className="scroll-text">Scroll</span>
-          <div className="scroll-line" />
-        </motion.div>
-      </section>
-
-      <section className="section-container signature-section" id="menu">
-        <div className="signature-grid">
-
-          {/* Left menu box */}
-          <div className="signature-menu-box reveal">
-            <h2 className="menu-box-title">SIGNATURE<br />PLATES</h2>
-            <div className="menu-item-list">
-              {[
-                { name: 'Butter Chicken', price: '$24', desc: 'Tandoori cooked chicken in a rich, creamy tomato sauce' },
-                { name: 'Lamb Curry',     price: '$28', desc: 'Slow-cooked lamb in aromatic Kashmiri spices' },
-                { name: 'Palak Paneer',   price: '$21', desc: 'Fresh spinach and house-made cheese with mild spices' },
-              ].map((item) => (
-                <div className="menu-item" key={item.name}>
-                  <div className="menu-header">
-                    <span>{item.name}</span>
-                    <span className="price">{item.price}</span>
-                  </div>
-                  <div className="menu-desc">{item.desc}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right content */}
-          <div className="signature-content">
-            <h2 className="reveal-clip">SIGNATURE DISHES.<br />CLASSIC ROOTS.</h2>
-            <p className="reveal">
-              Experience the authentic taste of fine dining. Our recipes have been perfected over
-              generations, bringing you a blend of rich spices, warm atmosphere, and unforgettable moments.
-            </p>
-            <button className="dark-btn mb-xl reveal">View Menu</button>
-
-            <div className="image-grid-2 reveal-stagger">
-              <div className="img-wrap zoom-wrap">
-                <img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&q=80&w=600" alt="Curry" />
-              </div>
-              <div className="img-wrap zoom-wrap">
-                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=600" alt="Serving" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* ── Drinks ── */}
-      <section className="section-container drinks-section">
-        <div className="drinks-grid">
-          <div className="drinks-content">
-            <h2 className="reveal-clip">DRINKS THAT<br />COMPLETE<br />THE EXPERIENCE</h2>
-            <p className="mb-xl reveal">
-              A curated selection of signature cocktails perfectly paired to complement our rich culinary heritage.
-            </p>
-            <button className="dark-btn mb-xl reveal">View Drinks Menu</button>
-            <div className="menu-item-list border-top-list reveal-stagger">
-              {[
-                { name: 'Amrit Old Fashioned', price: '$16' },
-                { name: 'Mango Lassi Martini',  price: '$14' },
-                { name: 'The Maharaja',          price: '$18' },
-              ].map((d) => (
-                <div className="menu-item" key={d.name}>
-                  <div className="menu-header">
-                    <span>{d.name}</span>
-                    <span className="price">{d.price}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="drinks-images reveal-stagger">
-            <video
-              className="drink-img-1 zoom-wrap"
-              src="/gallery/video-drinks-1.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
-            <img className="drink-img-2 zoom-wrap" src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&q=80&w=600" alt="Cocktail smoke" />
-          </div>
-        </div>
-      </section>
-
-      {/* ── Gallery ── */}
-      <Gallery />
-
-      {/* ── Interior Banner ── */}
-      <section className="interior-banner">
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1920" alt="Restaurant Interior" />
-        <div className="banner-text reveal">
-          <p className="banner-quote">"Where every meal tells a story."</p>
-        </div>
-      </section>
-
-      {/* ── Reviews ── */}
-      <section className="section-container reviews-section">
-        <div className="reviews-header reveal">
-          <h2>WHAT OUR<br />GUESTS SAY</h2>
-          <div className="rating-box">
-            <span className="stars">★★★★★</span>
-            <span className="score">4.9<span style={{ fontSize: '1rem' }}>/5</span></span>
-            <span className="score-sub">Based on 500+ reviews</span>
-          </div>
-        </div>
-
-        <div className="reviews-grid">
-          {[
-            { quote: '"Absolutely phenomenal dining experience. The flavors are exceptionally balanced and the service is impeccable."', name: '— Sarah J.' },
-            { quote: '"The best Indian restaurant in the city. The ambiance, the signature plates — everything was perfect."', name: '— Michael T.' },
-            { quote: '"A culinary journey. The cocktails perfectly complement the rich flavors. Highly recommend!"', name: '— Emma L.' },
-          ].map((r) => (
-            <div className="review-card" key={r.name}>
-              <div className="stars">★★★★★</div>
-              <p>{r.quote}</p>
-              <span className="reviewer">{r.name}</span>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center mt-xl reveal">
-          <button className="dark-btn inline">Leave a Review</button>
-          <button className="text-btn inline ml-md">Read All Reviews</button>
-        </div>
-      </section>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={
+            <PageTransition>
+              <HomePage />
+            </PageTransition>
+          } />
+          <Route path="/menu" element={
+            <PageTransition>
+              <MenuPage />
+            </PageTransition>
+          } />
+        </Routes>
+      </AnimatePresence>
 
       {/* ── Footer ── */}
       <footer className="footer">
         <div className="footer-links reveal-stagger">
-
-          {/* Hours */}
           <div className="footer-col">
             <h4>Hours</h4>
             <ul className="f-list">
@@ -243,7 +96,6 @@ function App() {
             </ul>
           </div>
 
-          {/* Location */}
           <div className="footer-col">
             <h4>Location</h4>
             <ul className="f-list">
@@ -264,12 +116,10 @@ function App() {
             </ul>
           </div>
 
-          {/* Brand centre */}
           <div className="footer-col text-center">
             <div className="footer-brand-icon">✧</div>
           </div>
 
-          {/* Reservations */}
           <div className="footer-col">
             <h4>Reservations</h4>
             <ul className="f-list">
@@ -285,7 +135,6 @@ function App() {
             </ul>
           </div>
 
-          {/* Social */}
           <div className="footer-col">
             <h4>Follow Us</h4>
             <ul className="f-list">
@@ -306,6 +155,14 @@ function App() {
         <div className="footer-huge-logo">BUNGALOW TWELVE</div>
       </footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 

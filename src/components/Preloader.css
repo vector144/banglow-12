@@ -1,0 +1,70 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background-color: var(--color-dark, #1a1a1a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.preloader-content {
+  text-align: center;
+  position: relative;
+}
+
+.loader-logo {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  color: var(--color-accent, #c9a227);
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.loader-logo span {
+  display: inline-block;
+}
+
+.loader-progress-container {
+  width: 200px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.loader-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--color-accent, #c9a227);
+  transform: translateX(-100%);
+}
+
+.preloader-shutter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  top: 100%;
+  z-index: 2;
+}
+
+/* Page Transition Curtain */
+.page-curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-accent);
+  z-index: 9999;
+  pointer-events: none;
+  transform: translateY(100%);
+}
