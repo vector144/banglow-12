@@ -30,12 +30,8 @@ function App() {
         <nav className="nav-links">
           <a href="#home">Home</a>
           <a href="#menu">Menu</a>
-          <a href="#catering">Catering</a>
           <a href="#gallery">Gallery</a>
         </nav>
-        <div className="order-btn">
-          <span>Order Now</span>
-        </div>
       </header>
 
       {/* ── Hero ── */}
@@ -87,13 +83,6 @@ function App() {
         </motion.div>
       </section>
 
-      {/* ── Sub-hero image ── */}
-      <section
-        className="hero-sub reveal-scale"
-        style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?auto=format&fit=crop&q=80&w=1920)' }}
-      />
-
-      {/* ── Signature Plates ── */}
       <section className="section-container signature-section" id="menu">
         <div className="signature-grid">
 
@@ -115,7 +104,6 @@ function App() {
                 </div>
               ))}
             </div>
-            <button className="dark-btn box-btn">View All</button>
           </div>
 
           {/* Right content */}
@@ -139,35 +127,6 @@ function App() {
         </div>
       </section>
 
-      {/* ── Catering ── */}
-      <section className="section-container catering-section" id="catering">
-        <div className="section-header-center">
-          <div className="lines-wrapper reveal">
-            <span className="line" />
-            <h2>CATERING<br />THE AMRIT WAY</h2>
-            <span className="line" />
-          </div>
-          <p className="subtitle reveal">Let us bring the authentic taste of India to your next event or celebration.</p>
-        </div>
-
-        <div className="image-grid-3 reveal-stagger">
-          {[
-            { img: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=600', title: 'Corporate Events', sub: 'Impress your team with our selections' },
-            { img: 'https://images.unsplash.com/photo-1555243896-c709bfa0b564?auto=format&fit=crop&q=80&w=600', title: 'Private Dinners', sub: 'Intimate gatherings made special' },
-            { img: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=600', title: 'Weddings & Galas', sub: 'Grand celebrations crafted beautifully' },
-          ].map((c) => (
-            <div className="img-card" key={c.title}>
-              <div className="img-card-inner zoom-wrap">
-                <img src={c.img} alt={c.title} />
-              </div>
-              <div className="card-caption">
-                {c.title}<br />
-                <span className="small">{c.sub}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ── Drinks ── */}
       <section className="section-container drinks-section">
@@ -253,41 +212,74 @@ function App() {
       {/* ── Footer ── */}
       <footer className="footer">
         <div className="footer-links reveal-stagger">
+
+          {/* Hours */}
           <div className="footer-col">
             <h4>Hours</h4>
             <ul className="f-list">
-              <li>Mon–Thu: 11am – 9pm</li>
-              <li>Fri–Sun: 11am – 10pm</li>
+              <li><span className="f-day">Mon – Wed</span> 10 am – 12 am</li>
+              <li><span className="f-day">Thu</span> 10 am – 12 am</li>
+              <li><span className="f-day">Fri</span> 10 am – 12 am</li>
+              <li><span className="f-day">Sat – Sun</span> 10 am – 12:30 am</li>
             </ul>
           </div>
+
+          {/* Location */}
           <div className="footer-col">
             <h4>Location</h4>
             <ul className="f-list">
-              <li>123 Culinary Blvd</li>
-              <li>Ocala, FL 34471</li>
-              <li>(352) 555-0192</li>
+              <li>12A, Old Residency Rd</li>
+              <li>Civil Lines, Ratanada</li>
+              <li>Jodhpur, Rajasthan 342001</li>
+              <li className="mt-sm">
+                <a
+                  href="https://google.com/maps?sca_esv=33295543d8b8cd1e&daddr=12A,+old,+Residency+Rd,+Civil+Lines,+Ratanada,+Jodhpur,+Rajasthan+342001"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="f-link-accent"
+                >
+                  ↗ Get Directions
+                </a>
+              </li>
+              <li><a href="tel:+919828561212" className="f-link-accent">📞 098285 61212</a></li>
             </ul>
           </div>
+
+          {/* Brand centre */}
           <div className="footer-col text-center">
             <div className="footer-brand-icon">✧</div>
           </div>
+
+          {/* Reservations */}
           <div className="footer-col">
-            <h4>Links</h4>
-            <ul className="f-list double-col">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Our Story</a></li>
-              <li><a href="#">Menu</a></li>
-              <li><a href="#">Catering</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Contact</a></li>
+            <h4>Reservations</h4>
+            <ul className="f-list">
+              <li><a href="https://www.eazydiner.com" target="_blank" rel="noopener noreferrer">EazyDiner</a></li>
+              <li><a href="https://www.swiggy.com" target="_blank" rel="noopener noreferrer">Swiggy</a></li>
+              <li><a href="https://www.zomato.com" target="_blank" rel="noopener noreferrer">Zomato</a></li>
+            </ul>
+            <h4 className="mt-md">Services</h4>
+            <ul className="f-list">
+              <li>All You Can Eat</li>
+              <li>Outdoor Seating</li>
+              <li>Private Dining Room</li>
             </ul>
           </div>
+
+          {/* Social */}
           <div className="footer-col">
-            <h4>Social</h4>
+            <h4>Follow Us</h4>
             <ul className="f-list">
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Twitter</a></li>
+              <li>
+                <a
+                  href="https://www.instagram.com/bungalow.twelve/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="f-link-accent"
+                >
+                  Instagram
+                </a>
+              </li>
             </ul>
           </div>
         </div>

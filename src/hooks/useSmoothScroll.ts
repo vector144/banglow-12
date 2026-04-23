@@ -19,8 +19,22 @@ export function useSmoothScroll() {
     });
     gsap.ticker.lagSmoothing(0);
 
+    // Smooth scroll for anchor links
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest('a');
+      if (anchor && anchor.getAttribute('href')?.startsWith('#')) {
+        e.preventDefault();
+        const id = anchor.getAttribute('href');
+        if (id) lenis.scrollTo(id);
+      }
+    };
+
+    document.addEventListener('click', handleAnchorClick);
+
     return () => {
       lenis.destroy();
+      document.removeEventListener('click', handleAnchorClick);
       gsap.ticker.remove(() => {});
     };
   }, []);
