@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap');
 
 :root {
-  --color-dark: #1a1a1a;
-  --color-cream: #ece5d5;
-  --color-accent: #c08a4f;
+  /* Bungalow Twelve Brand Palette */
+  --color-dark:   #163020;   /* deep forest green — from logo background */
+  --color-green:  #1e4030;   /* mid green — for hover states */
+  --color-cream:  #f2ead8;   /* warm parchment cream */
+  --color-accent: #C9A227;   /* logo gold */
+  --color-accent-light: #E2BC4A; /* lighter gold for glows */
   
   --font-serif: 'Cormorant Garamond', serif;
   --font-sans: 'Montserrat', sans-serif;
