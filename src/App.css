@@ -166,9 +166,11 @@ img.zoom-wrap:hover {
 .mobile-toggle {
   display: none;
   flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 21px;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -177,16 +179,18 @@ img.zoom-wrap:hover {
 }
 
 .mobile-toggle .bar {
-  width: 100%;
+  width: 28px;
   height: 2px;
   background-color: var(--color-cream);
-  transition: all 0.3s ease;
-  transform-origin: left center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center right;
 }
 
-.mobile-toggle.open .bar:nth-child(1) { transform: rotate(45deg); }
-.mobile-toggle.open .bar:nth-child(2) { opacity: 0; }
-.mobile-toggle.open .bar:nth-child(3) { transform: rotate(-45deg); }
+.mobile-toggle .bar:nth-child(2) { width: 20px; }
+
+.mobile-toggle.open .bar:nth-child(1) { transform: rotate(-45deg) translate(-2px, 0); width: 28px; }
+.mobile-toggle.open .bar:nth-child(2) { opacity: 0; width: 0; }
+.mobile-toggle.open .bar:nth-child(3) { transform: rotate(45deg) translate(-2px, 0); width: 28px; }
 
 @media (max-width: 1024px) {
   .mobile-toggle { display: flex; }
@@ -630,8 +634,8 @@ img.zoom-wrap:hover {
 @media (max-width: 640px) {
   .image-grid-3, .reviews-grid   { grid-template-columns: 1fr; }
   .image-grid-2                  { grid-template-columns: 1fr; }
-  .section-container             { padding: 4rem 5%; }
+  .section-container             { padding: 4rem 6%; }
   .footer-links                  { grid-template-columns: 1fr; }
-  .header                        { padding: 1rem 5%; }
-  .logo-img                      { height: 36px; }
+  .header                        { padding: 1.5rem 6%; }
+  .logo-img                      { height: 40px; }
 }
