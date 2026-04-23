@@ -32,69 +32,97 @@ const GALLERY_ITEMS = [
   },
   {
     id: 4,
+    type: 'video' as const,
+    src: '/gallery/video-dessert.mp4',
+    caption: 'Soft, Creamy, and Sweet',
+    span: 'normal',
+  },
+  {
+    id: 5,
+    type: 'image' as const,
+    src: '/gallery/dessert-1.jpg',
+    caption: 'A Taste of Heaven',
+    span: 'normal',
+  },
+  {
+    id: 6,
+    type: 'image' as const,
+    src: '/gallery/dessert-2.jpg',
+    caption: 'Sweet Moments',
+    span: 'normal',
+  },
+  {
+    id: 7,
+    type: 'image' as const,
+    src: '/gallery/dessert-3.jpg',
+    caption: 'Indulgent Flavors',
+    span: 'normal',
+  },
+  {
+    id: 8,
     type: 'image' as const,
     src: '/gallery/burnt-garlic-rice.jpg',
     caption: 'Burnt Garlic Rice with Paneer Chilli',
     span: 'normal',
   },
   {
-    id: 5,
+    id: 9,
     type: 'image' as const,
     src: '/gallery/pancakes.jpg',
     caption: 'Pancake Mornings',
     span: 'normal',
   },
   {
-    id: 6,
+    id: 10,
     type: 'image' as const,
     src: '/gallery/beetroot-kebab.jpg',
     caption: 'Beetroot Kebab',
     span: 'normal',
   },
   {
-    id: 7,
+    id: 11,
     type: 'image' as const,
     src: '/gallery/khari-pizza-1.jpg',
     caption: 'Khari Base Pizza',
     span: 'normal',
   },
   {
-    id: 8,
+    id: 12,
     type: 'image' as const,
     src: '/gallery/khari-pizza-2.jpg',
     caption: 'Khari Base Pizza — detail',
     span: 'normal',
   },
   {
-    id: 9,
+    id: 13,
     type: 'image' as const,
     src: '/gallery/dimsum.jpg',
     caption: 'Dimsum at Bungalow Twelve',
     span: 'normal',
   },
   {
-    id: 10,
+    id: 14,
     type: 'image' as const,
     src: '/gallery/breakfast-sandwich-1.jpg',
     caption: 'Breakfast Sandwiches',
     span: 'normal',
   },
   {
-    id: 11,
+    id: 15,
     type: 'image' as const,
     src: '/gallery/breakfast-sandwich-2.jpg',
     caption: 'Wake Up to Something Special',
     span: 'normal',
   },
   {
-    id: 12,
+    id: 16,
     type: 'image' as const,
     src: '/gallery/breakfast-sandwich-3.jpg',
     caption: 'Crafted with Love',
     span: 'normal',
   },
   {
-    id: 13,
+    id: 17,
     type: 'image' as const,
     src: '/gallery/breakfast-sandwich-4.jpg',
     caption: 'Morning at Bungalow Twelve',
@@ -104,23 +132,36 @@ const GALLERY_ITEMS = [
 
 type GalleryItem = (typeof GALLERY_ITEMS)[number];
 
-// ─── Video Card ───────────────────────────────────────────────
+// ─── Video Card — autoplay when visible ──────────────────────
 function VideoCard({ item, onClick }: { item: GalleryItem; onClick: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseEnter = () => videoRef.current?.play();
-  const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  };
+  useEffect(() => {
+    const video = videoRef.current;
+    const container = containerRef.current;
+    if (!video || !container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {}); // catch autoplay policy errors silently
+        } else {
+          video.pause();
+          video.currentTime = 0;
+        }
+      },
+      { threshold: 0.4 } // trigger when 40% visible
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
+      ref={containerRef}
       className={`gallery-card gallery-card--${item.span}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       onClick={onClick}
     >
       <video
