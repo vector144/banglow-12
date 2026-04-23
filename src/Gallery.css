@@ -114,34 +114,6 @@
 }
 
 /* ── Video play icon ── */
-.gallery-play-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: rgba(201, 162, 39, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-dark);
-  transition: transform 0.35s ease, background-color 0.35s ease, opacity 0.35s ease;
-}
-
-.gallery-play-icon svg {
-  width: 22px;
-  height: 22px;
-  margin-left: 3px; /* optical centering for play triangle */
-}
-
-.gallery-card:hover .gallery-play-icon {
-  transform: translate(-50%, -50%) scale(1.12);
-  background: var(--color-accent);
-  opacity: 0.9;
-}
-
 /* ============================================================
    LIGHTBOX
    ============================================================ */

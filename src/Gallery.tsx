@@ -173,9 +173,6 @@ function VideoCard({ item, onClick }: { item: GalleryItem; onClick: () => void }
         preload="metadata"
         className="gallery-media"
       />
-      <div className="gallery-play-icon">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      </div>
       <div className="gallery-overlay">
         <p className="gallery-caption">{item.caption}</p>
       </div>
