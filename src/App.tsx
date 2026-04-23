@@ -8,6 +8,7 @@ import { useScrollAnimations } from './hooks/useScrollAnimations';
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
   useSmoothScroll();
@@ -19,6 +20,8 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+
   return (
     <div className="App">
 
@@ -27,11 +30,27 @@ function App() {
         <div className="logo">
           <img src={logoImg} alt="Bungalow Twelve" className="logo-img" />
         </div>
-        <nav className="nav-links">
+        <nav className="nav-links desktop-only">
           <a href="#home">Home</a>
           <a href="#menu">Menu</a>
           <a href="#gallery">Gallery</a>
         </nav>
+
+        {/* Mobile Toggle */}
+        <button className={`mobile-toggle ${mobileMenuOpen ? 'open' : ''}`} onClick={toggleMobileMenu}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </button>
+
+        {/* Mobile Nav Overlay */}
+        <div className={`mobile-nav ${mobileMenuOpen ? 'active' : ''}`}>
+          <nav className="mobile-nav-links">
+            <a href="#home" onClick={toggleMobileMenu}>Home</a>
+            <a href="#menu" onClick={toggleMobileMenu}>Menu</a>
+            <a href="#gallery" onClick={toggleMobileMenu}>Gallery</a>
+          </nav>
+        </div>
       </header>
 
       {/* ── Hero ── */}
