@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import './Preloader.css';
 
+import loaderLogo from '../assets/removed-bg-loog.png';
+
 interface PreloaderProps {
   onComplete: () => void;
 }
@@ -24,10 +26,10 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       }
     });
 
-    // Reveal logo letters
+    // Reveal logo
     tl.fromTo(logoRef.current, 
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.5 }
+      { y: 30, opacity: 0, scale: 0.95 },
+      { y: 0, opacity: 1, scale: 1, duration: 1.2, ease: 'power3.out', delay: 0.5 }
     );
 
     // Progress bar animation
@@ -35,13 +37,13 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       xPercent: 100,
       duration: 1.5,
       ease: 'power2.inOut'
-    }, '-=0.5');
+    }, '-=0.8');
 
     // Fade out elements inside
     tl.to([logoRef.current, progressRef.current], {
       opacity: 0,
-      y: -20,
-      duration: 0.5,
+      scale: 1.05,
+      duration: 0.6,
       ease: 'power2.in'
     }, '+=0.2');
 
@@ -53,8 +55,8 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
   return (
     <div className="preloader" ref={containerRef}>
       <div className="preloader-content">
-        <div className="loader-logo" ref={logoRef}>
-          BUNGALOW TWELVE
+        <div className="loader-logo-img-wrap" ref={logoRef}>
+          <img src={loaderLogo} alt="Bungalow Twelve" className="loader-logo-img" />
         </div>
         <div className="loader-progress-container">
           <div className="loader-progress-bar" ref={progressRef}></div>

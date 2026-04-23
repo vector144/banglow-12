@@ -15,18 +15,15 @@
   position: relative;
 }
 
-.loader-logo {
-  font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  color: var(--color-accent, #c9a227);
-  letter-spacing: 0.2em;
-  font-weight: 500;
-  margin-bottom: 2rem;
+.loader-logo-img-wrap {
+  margin-bottom: 2.5rem;
   overflow: hidden;
 }
 
-.loader-logo span {
-  display: inline-block;
+.loader-logo-img {
+  height: 80px;
+  width: auto;
+  display: block;
 }
 
 .loader-progress-container {
