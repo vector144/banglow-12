@@ -208,7 +208,7 @@ const MenuPage: React.FC = () => {
       </div>
 
       <div className="menu-grid-container">
-        {filteredData.map((section, sIdx) => (
+        {filteredData.map((section) => (
           <div key={section.category} className="menu-section">
             <div className="menu-section-header">
               <h2 className="menu-section-title">{section.category}</h2>
