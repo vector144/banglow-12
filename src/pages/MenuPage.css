@@ -119,47 +119,38 @@
 
 .menu-items-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 6rem;
-  row-gap: 2.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 4rem;
+  row-gap: 1.5rem;
 }
 
-.menu-item-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  position: relative;
-}
-
-.menu-item-info {
-  flex: 1;
+.menu-item-card {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.05);
 }
 
 .menu-item-name {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-}
-
-.menu-item-price {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  color: var(--color-accent);
-  margin-left: 1.5rem;
+  color: #333;
 }
 
 /* Dots between name and price if desired, but image shows clean space */
 
 @media (max-width: 1024px) {
   .menu-items-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3rem;
   }
 }
 
 @media (max-width: 768px) {
+  .menu-items-grid {
+    grid-template-columns: 1fr;
+  }
   .menu-page {
     padding-top: 100px;
   }

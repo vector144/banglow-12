@@ -215,11 +215,8 @@ const MenuPage: React.FC = () => {
             </div>
             <div className="menu-items-grid">
               {section.items.map((item) => (
-                <div key={item.name} className="menu-item-row">
-                  <div className="menu-item-info">
-                    <span className="menu-item-name">{item.name}</span>
-                  </div>
-                  <span className="menu-item-price">₹{item.price}</span>
+                <div key={item.name} className="menu-item-card">
+                  <span className="menu-item-name">{item.name}</span>
                 </div>
               ))}
             </div>
