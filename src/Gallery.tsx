@@ -136,22 +136,25 @@ type GalleryItem = (typeof GALLERY_ITEMS)[number];
 function VideoCard({ item, onClick }: { item: GalleryItem; onClick: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
-    const video = videoRef.current;
     const container = containerRef.current;
-    if (!video || !container) return;
+    if (!container) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {}); // catch autoplay policy errors silently
-        } else {
-          video.pause();
-          video.currentTime = 0;
+        setIsInView(entry.isIntersecting);
+        if (videoRef.current) {
+          if (entry.isIntersecting) {
+            videoRef.current.play().catch(() => {});
+          } else {
+            videoRef.current.pause();
+            videoRef.current.currentTime = 0;
+          }
         }
       },
-      { threshold: 0.4 } // trigger when 40% visible
+      { threshold: 0.2 }
     );
 
     observer.observe(container);
@@ -161,18 +164,20 @@ function VideoCard({ item, onClick }: { item: GalleryItem; onClick: () => void }
   return (
     <div
       ref={containerRef}
-      className={`gallery-card gallery-card--${item.span}`}
+      className={`gallery-card gallery-card--${item.span} ${!isInView ? 'is-loading' : ''}`}
       onClick={onClick}
     >
-      <video
-        ref={videoRef}
-        src={item.src}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className="gallery-media"
-      />
+      {isInView && (
+        <video
+          ref={videoRef}
+          src={item.src}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="gallery-media fade-in"
+        />
+      )}
       <div className="gallery-overlay">
         <p className="gallery-caption">{item.caption}</p>
       </div>
@@ -180,11 +185,41 @@ function VideoCard({ item, onClick }: { item: GalleryItem; onClick: () => void }
   );
 }
 
-// ─── Image Card ───────────────────────────────────────────────
+// ─── Image Card — custom lazy load ────────────────────────────
 function ImageCard({ item, onClick }: { item: GalleryItem; onClick: () => void }) {
+  const [loaded, setLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const imgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' } // Start loading 200px before it enters
+    );
+
+    if (imgRef.current) observer.observe(imgRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className={`gallery-card gallery-card--${item.span}`} onClick={onClick}>
-      <img src={item.src} alt={item.caption} className="gallery-media" loading="lazy" />
+    <div 
+      ref={imgRef}
+      className={`gallery-card gallery-card--${item.span} ${!loaded ? 'is-loading' : ''}`} 
+      onClick={onClick}
+    >
+      {isInView && (
+        <img 
+          src={item.src} 
+          alt={item.caption} 
+          className={`gallery-media ${loaded ? 'fade-in' : ''}`} 
+          onLoad={() => setLoaded(true)}
+        />
+      )}
       <div className="gallery-overlay">
         <p className="gallery-caption">{item.caption}</p>
       </div>
