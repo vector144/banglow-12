@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            SERVING CENTRAL FLORIDA SINCE 1996 · BUNGALOW TWELVE
+             FLAVORS THAT STAY
           </motion.p>
 
           <motion.h1
@@ -31,7 +31,7 @@ const HomePage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            FLAVORS<br />THAT STAY
+          BUNGALOW TWELVE
           </motion.h1>
 
           <motion.div
