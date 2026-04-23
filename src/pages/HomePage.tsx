@@ -97,8 +97,22 @@ const HomePage: React.FC = () => {
         </div>
 
         <div className="text-center mt-xl reveal">
-          <button className="dark-btn inline">Leave a Review</button>
-          <button className="text-btn inline ml-md">Read All Reviews</button>
+          <a 
+            href="https://google.com/maps?sca_esv=33295543d8b8cd1e&daddr=12A,+old,+Residency+Rd,+Civil+Lines,+Ratanada,+Jodhpur,+Rajasthan+342001" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="dark-btn inline"
+          >
+            Leave a Review
+          </a>
+          <a 
+            href="https://google.com/maps?sca_esv=33295543d8b8cd1e&daddr=12A,+old,+Residency+Rd,+Civil+Lines,+Ratanada,+Jodhpur,+Rajasthan+342001" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-btn inline ml-md"
+          >
+            Read All Reviews
+          </a>
         </div>
       </section>
     </>
