@@ -11,7 +11,7 @@ const HomePage: React.FC = () => {
       <section className="hero" id="home" ref={heroRef}>
         <div
           className="hero-img"
-          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=1920)' }}
+          style={{ backgroundImage: 'url(/gallery/hero1.jpg)' }}
         />
         <div className="hero-overlay" />
 
