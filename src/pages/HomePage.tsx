@@ -98,7 +98,7 @@ const HomePage: React.FC = () => {
 
         <div className="text-center mt-xl reveal">
           <a 
-            href="https://google.com/maps?sca_esv=33295543d8b8cd1e&daddr=12A,+old,+Residency+Rd,+Civil+Lines,+Ratanada,+Jodhpur,+Rajasthan+342001" 
+            href="https://www.google.com/maps/place/Bungalow+12/@26.2675291,73.0284225,17z/data=!4m8!3m7!1s0x39418dde1e2a49d7:0x3b1c3e7d5b012df4!8m2!3d26.2675243!4d73.0309974!9m1!1b1!16s%2Fg%2F11nxqyxdrl?entry=ttu&g_ep=EgoyMDI2MDQyMC4wIKXMDSoASAFQAw%3D%3D" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="dark-btn inline"
@@ -106,7 +106,7 @@ const HomePage: React.FC = () => {
             Leave a Review
           </a>
           <a 
-            href="https://google.com/maps?sca_esv=33295543d8b8cd1e&daddr=12A,+old,+Residency+Rd,+Civil+Lines,+Ratanada,+Jodhpur,+Rajasthan+342001" 
+            href="https://www.google.com/maps/place/Bungalow+12/@26.2675291,73.0284225,17z/data=!4m8!3m7!1s0x39418dde1e2a49d7:0x3b1c3e7d5b012df4!8m2!3d26.2675243!4d73.0309974!9m1!1b1!16s%2Fg%2F11nxqyxdrl?entry=ttu&g_ep=EgoyMDI2MDQyMC4wIKXMDSoASAFQAw%3D%3D" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-btn inline ml-md"
