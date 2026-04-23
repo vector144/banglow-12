@@ -34,6 +34,8 @@ function AppContent() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  const isMenuPage = location.pathname === '/menu';
+
   return (
     <div className="App">
       <AnimatePresence mode="wait">
@@ -41,7 +43,7 @@ function AppContent() {
       </AnimatePresence>
 
       {/* ── Header ── */}
-      <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+      <header className={`header ${scrolled || isMenuPage ? 'scrolled' : ''}`}>
         <Link to="/" className="logo">
           <img src={logoImg} alt="Bungalow Twelve" className="logo-img" />
         </Link>
