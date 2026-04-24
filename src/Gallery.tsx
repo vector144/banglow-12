@@ -9,6 +9,7 @@ import './Gallery.css';
 //  span: 'tall' | 'wide' | 'normal'  (controls grid sizing)
 // ─────────────────────────────────────────────────────────────
 const GALLERY_ITEMS = [
+  // Col 1
   {
     id: 5,
     type: 'image' as const,
@@ -30,6 +31,7 @@ const GALLERY_ITEMS = [
     caption: 'Indulgent Flavors',
     span: 'normal',
   },
+  // Col 2
   {
     id: 8,
     type: 'image' as const,
@@ -51,6 +53,7 @@ const GALLERY_ITEMS = [
     caption: 'Beetroot Kebab',
     span: 'normal',
   },
+  // Col 3
   {
     id: 11,
     type: 'image' as const,
@@ -72,6 +75,7 @@ const GALLERY_ITEMS = [
     caption: 'Dimsum at Bungalow Twelve',
     span: 'tall',
   },
+  // Col 4
   {
     id: 14,
     type: 'image' as const,
