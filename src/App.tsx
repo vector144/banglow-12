@@ -52,7 +52,7 @@ function AppContent() {
         <nav className="nav-links desktop-only">
           <Link to="/">Home</Link>
           <Link to="/menu">Menu</Link>
-          <a href="/#gallery">Gallery</a>
+          {location.pathname === '/' && <a href="#gallery">Gallery</a>}
         </nav>
 
         {/* Mobile Toggle */}
@@ -67,7 +67,7 @@ function AppContent() {
           <nav className="mobile-nav-links">
             <Link to="/" onClick={toggleMobileMenu}>Home</Link>
             <Link to="/menu" onClick={toggleMobileMenu}>Menu</Link>
-            <a href="/#gallery" onClick={toggleMobileMenu}>Gallery</a>
+            {location.pathname === '/' && <a href="#gallery" onClick={toggleMobileMenu}>Gallery</a>}
           </nav>
         </div>
       </header>
