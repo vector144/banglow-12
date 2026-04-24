@@ -109,57 +109,7 @@ const GALLERY_ITEMS = [
 type GalleryItem = (typeof GALLERY_ITEMS)[number];
 
 // ─── Video Card — autoplay when visible ──────────────────────
-function VideoCard({ item, onClick }: { item: GalleryItem; onClick: () => void }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState(false);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-        if (videoRef.current) {
-          if (entry.isIntersecting) {
-            videoRef.current.play().catch(() => {});
-          } else {
-            videoRef.current.pause();
-            videoRef.current.currentTime = 0;
-          }
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(container);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={containerRef}
-      className={`gallery-card gallery-card--${item.span} ${!isInView ? 'is-loading' : ''}`}
-      onClick={onClick}
-    >
-      {isInView && (
-        <video
-          ref={videoRef}
-          src={item.src}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="gallery-media fade-in"
-        />
-      )}
-      <div className="gallery-overlay">
-        <p className="gallery-caption">{item.caption}</p>
-      </div>
-    </div>
-  );
-}
 
 // ─── Image Card — custom lazy load ────────────────────────────
 function ImageCard({ item, onClick }: { item: GalleryItem; onClick: () => void }) {
