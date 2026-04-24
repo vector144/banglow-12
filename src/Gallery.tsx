@@ -248,11 +248,9 @@ function Lightbox({
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e) => e.stopPropagation()}
       >
-        {item.type === 'video' ? (
-          <video src={item.src} controls autoPlay muted loop playsInline className="lightbox-media" />
-        ) : (
+        {
           <img src={item.src} alt={item.caption} className="lightbox-media" />
-        )}
+        }
         <p className="lightbox-caption">{item.caption}</p>
       </motion.div>
 
@@ -290,9 +288,7 @@ export default function Gallery() {
       {/* Grid */}
       <div className="gallery-grid reveal-stagger">
         {GALLERY_ITEMS.map((item, i) =>
-          item.type === 'video' ? (
-            <VideoCard key={item.id} item={item} onClick={() => openLightbox(i)} />
-          ) : (
+          (
             <ImageCard key={item.id} item={item} onClick={() => openLightbox(i)} />
           )
         )}
