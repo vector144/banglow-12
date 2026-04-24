@@ -29,10 +29,12 @@ function AppContent() {
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
-  // Scroll to top on route change
+  // Scroll to top on route change, unless it's a hash link
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    if (!location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
 
   const isMenuPage = location.pathname === '/menu';
 
