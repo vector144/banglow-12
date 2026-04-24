@@ -97,13 +97,13 @@ const GALLERY_ITEMS = [
     caption: 'Crafted with Love',
     span: 'normal',
   },
-  {
-    id: 17,
-    type: 'image' as const,
-    src: '/gallery/breakfast-sandwich-4.jpg',
-    caption: 'Morning at Bungalow Twelve',
-    span: 'normal',
-  },
+  // {
+  //   id: 17,
+  //   type: 'image' as const,
+  //   src: '/gallery/breakfast-sandwich-4.jpg',
+  //   caption: 'Morning at Bungalow Twelve',
+  //   span: 'normal',
+  // },
 ];
 
 type GalleryItem = (typeof GALLERY_ITEMS)[number];
