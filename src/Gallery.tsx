@@ -10,34 +10,6 @@ import './Gallery.css';
 // ─────────────────────────────────────────────────────────────
 const GALLERY_ITEMS = [
   {
-    id: 1,
-    type: 'video' as const,
-    src: '/gallery/video-drinks-1.mp4',
-    caption: 'Signature Drinks',
-    span: 'tall',
-  },
-  {
-    id: 2,
-    type: 'video' as const,
-    src: '/gallery/video-drinks-2.mp4',
-    caption: 'Bold. Smooth. Perfectly Chilled.',
-    span: 'normal',
-  },
-  {
-    id: 3,
-    type: 'video' as const,
-    src: '/gallery/video-dosa.mp4',
-    caption: 'Rawa Masala Dosa',
-    span: 'tall',
-  },
-  {
-    id: 4,
-    type: 'video' as const,
-    src: '/gallery/video-dessert.mp4',
-    caption: 'Soft, Creamy, and Sweet',
-    span: 'normal',
-  },
-  {
     id: 5,
     type: 'image' as const,
     src: '/gallery/dessert-1.jpg',
@@ -49,7 +21,7 @@ const GALLERY_ITEMS = [
     type: 'image' as const,
     src: '/gallery/dessert-2.jpg',
     caption: 'Sweet Moments',
-    span: 'normal',
+    span: 'tall',
   },
   {
     id: 7,
@@ -63,7 +35,7 @@ const GALLERY_ITEMS = [
     type: 'image' as const,
     src: '/gallery/burnt-garlic-rice.jpg',
     caption: 'Burnt Garlic Rice with Paneer Chilli',
-    span: 'normal',
+    span: 'tall',
   },
   {
     id: 9,
@@ -84,7 +56,7 @@ const GALLERY_ITEMS = [
     type: 'image' as const,
     src: '/gallery/khari-pizza-1.jpg',
     caption: 'Khari Base Pizza',
-    span: 'normal',
+    span: 'tall',
   },
   {
     id: 12,
@@ -98,7 +70,7 @@ const GALLERY_ITEMS = [
     type: 'image' as const,
     src: '/gallery/dimsum.jpg',
     caption: 'Dimsum at Bungalow Twelve',
-    span: 'normal',
+    span: 'tall',
   },
   {
     id: 14,
@@ -112,7 +84,7 @@ const GALLERY_ITEMS = [
     type: 'image' as const,
     src: '/gallery/breakfast-sandwich-2.jpg',
     caption: 'Wake Up to Something Special',
-    span: 'normal',
+    span: 'tall',
   },
   {
     id: 16,
